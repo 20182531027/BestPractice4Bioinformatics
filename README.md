@@ -45,8 +45,8 @@ Fork完成后，页面将会跳转到你自己的仓库页面。我们对该仓�
 ![clone](<assets/cloneButton.png>)
 
 
-在本地计算机上打开终端（如git bash），输入以下命令(记得使用刚才复制的地址，替换 git clone 后面的部分)
-：：warning:: 切记将`<yourname>`连同前后尖括号一起改为你自己的用户名
+在本地计算机上打开终端（如git bash），输入以下命令(记得使用刚才复制的地址，替换 git clone 后面的部分)  
+> :warning: 要将`<yourname>`连同前后尖括号一起改为你自己的用户名
 ```bash
 cd ~ # ‘～’ 表示当前用户的家目录，也可以选择其他你想要放置仓库的目录
 git clone git@github.com:biociao/BestPractice4Bioinformatics.git
