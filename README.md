@@ -10,8 +10,12 @@ Learn bioinformatics from 'ZERO' background
 4. 如何使用工具
 5. 设计实验方案与分析流程
 
+# 作业
 
-# 准备工作（即#0作业）
+Ex.0: Experience your first git operation! (见下文）  
+Ex.1: [Markdown everything!](./docs/markdown.md)
+
+# 准备工作（即作业Ex.0）
 使用 `github.com`平台，参与`BestPractice4Bioinformatics`培训项目并完成首次提交。
 
 # Guideline
