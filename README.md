@@ -10,7 +10,7 @@ Learn bioinformatics from 'ZERO' background
 4. 如何使用工具
 5. 设计实验方案与分析流程
 
-# 作业
+# 课程文档与作业
 
 Ex.0: Experience your first git operation! (见下文）  
 Ex.1: [Markdown everything!](./docs/markdown.md)
