@@ -1,0 +1,140 @@
+---
+title: "CheckClinicalMetadata"
+author: "Ciao"
+date: "2025-03-20"
+output: html_notebook
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(readxl) # install.package("readxl")
+```
+
+## Load clinical metadata
+
+```{r load}
+m.df <- read_xlsx("./clean.metadata.xlsx","Sheet1")
+```
+
+## 检查变量类型
+
+### 观察性别
+
+查看性别分布
+```{r}
+table(m.df$Gender)
+str(m.df$Gender)
+```
+结论：男女比例相对平衡。  
+注意到该变量为字符串变量。  
+
+将性别变量处理：
+```{r}
+m.df$Gender <- as.factor(m.df$Gender)
+```
+
+打印检查：
+```{r}
+str(m.df$Gender)
+```
+
+### 治疗方案
+
+统计每种治疗方案的频数
+```{r}
+table(m.df$Treatment)
+```
+
+观察到样本量不平衡。解决办法：  
+1. 剔除澳西替尼样本；  
+2. 补充更多样本使之平衡；  
+3. 证明奥西替尼在特定检验中不会产生显著影响，可以合并使用。    
+
+
+### 年龄分布
+
+先看值域：
+```{r}
+range(m.df$Age)
+```
+观察到最小30岁，最大77岁。
+```{r}
+library(ggplot2)
+ggplot(m.df,aes(x=Age)) + geom_density(aes(color=Gender))
+```
+密度分布图能看到性别分布为双峰结构，说明有两个年龄群。 总体以老人为主。
+
+
+
+```{r}
+ggplot(m.df,aes(x=Gender,y=Age,fill=Gender)) + 
+  geom_boxplot(alpha=.1,width=.2) +
+  geom_violin(alpha=.1)
+```
+
+### Date
+
+```{r}
+range(m.df$Brith)
+```
+
+```{r}
+m.df$VisitAge <- difftime(m.df$Diag1st,m.df$Brith)/365
+
+ggplot(m.df,aes(x=Age,y=VisitAge)) + geom_point() + 
+  geom_abline(linetype=2,color="blue")
+```
+观察到一个异常点。
+
+```{r}
+m.df$AgeBias <- m.df$VisitAge/m.df$Age
+
+head(m.df[order(m.df$AgeBias,decreasing = T),])
+```
+
+### Smoke
+
+```{r}
+table(m.df$SmokeHist)
+```
+处理吸烟变量分类
+```{r}
+m.df$SmokeBrief <- substr(m.df$SmokeHist,1,1)
+m.df$SmokeBrief <- as.factor(m.df$SmokeBrief)
+levels(m.df$SmokeBrief) <- c("不吸烟","有吸烟史")
+```
+
+处理病情进展分类
+```{r}
+m.df$Dev_fac <- as.factor(m.df$Develop)
+levels(m.df$Dev_fac)
+levels(m.df$Dev_fac) <- c("维持","恶化")
+```
+
+```{r}
+sum_smoke_dev <- table(m.df$SmokeBrief,m.df$Dev_fac)
+sum_smoke_dev
+sum_smoke_dev/rowSums(sum_smoke_dev)
+```
+
+#### test
+
+```{r}
+chisq.test(sum_smoke_dev)
+```
+
+### EGFR
+
+```{r}
+table(m.df$EGFR,m.df$Develop)
+```
+
+fix typo
+
+```{r}
+m.df$EGFR[which(m.df$EGFR=="19del")] <- "19Del"
+```
+
+```{r}
+table(m.df$EGFR,m.df$Develop)
+```
