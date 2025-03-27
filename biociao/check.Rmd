@@ -18,6 +18,12 @@ m.df <- read_xlsx("./clean.metadata.xlsx","Sheet1")
 
 ## 检查变量类型
 
+总体观察：
+
+```{r}
+summary(m.df)
+```
+
 ### 观察性别
 
 查看性别分布
@@ -138,3 +144,73 @@ m.df$EGFR[which(m.df$EGFR=="19del")] <- "19Del"
 ```{r}
 table(m.df$EGFR,m.df$Develop)
 ```
+
+
+# 利用统计学再次审视数据清洗
+
+标准正态分布
+```{r}
+x <- seq(-4, 4, length.out = 1000)
+y <- dnorm(x)
+
+# 创建数据框
+df <- data.frame(x = x, y = y)
+
+# 绘制标准正态分布图像
+ggplot(df, aes(x = x, y = y)) +
+  geom_line(color = "blue", size = 1) +
+  geom_vline(xintercept = c(-1.96, 1.96), color = "red", linetype = "dashed") +
+  geom_vline(xintercept = c(-2.58, 2.58), color = "darkred", linetype = "dashed") +
+  geom_text(aes(x = 1.96, y = 0.4, label = "α=0.05"), color = "red", hjust = 1.1, vjust = 0.5) +
+  geom_text(aes(x = 2.58, y = 0.4, label = "α=0.01"), color = "darkred", hjust = -0.1, vjust = 0.5) +
+  geom_text(aes(x = -1.96, y = 0.4, label = "α=0.05"), color = "red", hjust = -0.1, vjust = 0.5) +
+  geom_text(aes(x = -2.58, y = 0.4, label = "α=0.01"), color = "darkred", hjust = 1.1, vjust = 0.5) +
+  labs(title = "标准正态分布与显著性水平", x = "Z 分数", y = "密度") +
+  theme_minimal()
+```
+
+再次观察年龄：
+```{r}
+ggplot(m.df,aes(x=Age)) + geom_density(aes(color=Gender))
+```
+基本统计量
+```{r}
+library(plyr)
+m.df %>% group_by(Gender) %>%
+  dplyr::summarise(
+    mean=mean(Age),
+    median=median(Age),
+    sd=sd(Age))
+
+```
+
+Shapiro-Wilk 检验
+```{r}
+shapiro.test(m.df$Age)
+```
+
+
+
+
+查看箱线图
+```{r}
+ggplot(m.df,aes(x=Gender,y=Age)) + geom_boxplot(aes(fill=Gender))
+```
+
+查看四分位点：
+```{r}
+m.df %>% group_by(Gender) %>%
+  dplyr::summarise(
+    Q1=quantile(Age,0.25),
+    Q2=quantile(Age,0.5),
+    Q3=quantile(Age,0.75))
+```
+
+
+
+提问：男女组能否合在一起分析？
+
+```{r}
+wilcox.test(Age~Gender,m.df)
+```
+

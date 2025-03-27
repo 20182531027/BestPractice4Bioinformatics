@@ -13,7 +13,8 @@ Learn bioinformatics from 'ZERO' background
 # 课程文档与作业
 
 CH.0: [Experience your first git operation!](#guideline)  
-CH.1: [Markdown everything!](./docs/markdown.md)
+CH.1: [Markdown everything!](./docs/markdown.md)  
+CH.2: [(Very) basic statistics](./docs/basicStatistics.md)
 
 # 准备工作（即作业Ex.0）
 使用 `github.com`平台，参与`BestPractice4Bioinformatics`培训项目并完成首次提交。
