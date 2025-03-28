@@ -1,0 +1,114 @@
+---
+title: "Mycleanwork"
+author: "sunmeng"
+date: "2025-03-28"
+output: html_notebook
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(readxl)
+library(ggplot2)
+library(dplyr)
+```
+
+## Load clinical metadata
+
+开始表格检查。
+
+首先读取文件。
+
+```{r}
+metadata.df <- read_xlsx("./clean.metadata.xlsx","Sheet1")
+head(metadata.df)
+```
+
+检查总体情况
+
+```{r}
+summary(metadata.df)
+```
+
+### 观察性别和年龄分布
+
+ctrl+alt+i可以创建代码块
+
+```{r}
+table(metadata.df$Gender)
+```
+
+```{r}
+range(metadata.df$Age)
+density(metadata.df$Age)
+ggplot(metadata.df,aes(x=Age))+geom_histogram(aes(fill=Gender,position="stack"))+
+  geom_density(aes(y=..density..*150,color=Gender))
+```
+
+首先，年龄以50-70之间为主。
+存在一个30-40的小高峰,主要为男性贡献（n=6）
+
+```{r}
+table(metadata.df$EGFR)
+```
+
+```{r}
+metadata.df$EGFR[which(metadata.df$EGFR=="19del")] <- "19Del"
+```
+
+```{r}
+table(metadata.df$EGFR)
+```
+
+### Smoke
+
+```{r}
+table(metadata.df$SmokeHist)
+```
+
+处理吸烟变量分类
+
+```{r}
+metadata.df$SmokeBrief <- substr(metadata.df$SmokeHist,1,1)
+metadata.df$SmokeBrief <- as.factor(metadata.df$SmokeBrief)
+levels(metadata.df$SmokeBrief)
+levels(metadata.df$SmokeBrief) <- c("无吸烟史","有吸烟史")
+levels(metadata.df$SmokeBrief)
+```
+
+处理病情进展分类
+```{r}
+metadata.df$Dev_fac <- as.factor(metadata.df$Develop)
+levels(metadata.df$Dev_fac)
+levels(metadata.df$Dev_fac) <- c("维持","恶化")
+```
+
+```{r}
+sum_smoke_dev <- table(metadata.df$SmokeBrief,metadata.df$Dev_fac)
+sum_smoke_dev
+sum_smoke_dev/rowSums(sum_smoke_dev)
+```
+
+### Date
+
+```{r}
+range(metadata.df$Brith)
+```
+
+```{r}
+metadata.df$VisitAge <- difftime(metadata.df$Diag1st,metadata.df$Brith)/365
+ggplot(m.df,aes(x=Age,y=VisitAge)) + geom_point() + 
+  geom_abline(linetype=2,color="blue")
+```
+观察到一个异常点。
+
+```{r}
+metadata.df$AgeBias <- metadata.df$VisitAge/metadata.df$Age
+
+head(metadata.df[order(metadata.df$AgeBias,decreasing = T),])
+```
+
+#### test
+
+```{r}
+chisq.test(sum_smoke_dev)
+```
