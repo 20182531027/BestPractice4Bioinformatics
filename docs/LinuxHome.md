@@ -79,11 +79,11 @@ $ tree -L 1 /
 
 链接是一种特殊的文件，用于指向另一个文件或目录。链接分为两种类型：硬链接（Hard Link）和软链接（Symbolic Link 或 Soft Link）。
 
-### Device File  
+#### Device File  
 
 设备文件用于表示系统中的硬件设备。
 
-### Pipe File / FIFO
+#### Pipe File / FIFO
 管道文件是一种特殊的文件，用于进程间通信。它允许一个进程将数据写入管道，而另一个进程从管道中读取数据。
 
 #### Socket File  
@@ -155,9 +155,14 @@ _=/usr/bin/env
 
 # Homework
 
-Create your own HOME directory.
+Login to the server:
+```bash
+ssh student@train2025.biociao.cc
+```
 
-Replace `biociao` with your own name.
+After login, create your own HOME directory.
+
+Note: Replace `biociao` with your own name.
 
 Create a directory in your name.
 ```bash
@@ -179,9 +184,22 @@ Source your bash profile. This will change your HOME directory.
 source .bashrc
 ```
 
-
 Install mamba
 
 ```bash
 bash ../biociao/Miniforge3-Linux-x86_64.sh
 ```
+
+After that, re-login and do following operations:
+```bash
+# Note：You need to do this everytime you login.
+cd biociao
+source .bashrc
+```
+
+That will allow you to set up your own configurations.
+
+Reading extra knowledge about linux operations. Here are some recommendations:  
+
+- [鸟哥私房菜](https://linux.vbird.org) 
+- [Linux Journey](https://linuxjourney.com) 
