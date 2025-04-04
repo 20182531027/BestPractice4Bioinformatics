@@ -2,7 +2,7 @@
 
 ## Requirement / tools
 
-For windows user, you can use [PuTTY](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html) or [MobaXterm](https://mobaxterm .mobatek.net/).
+For windows user, you can use [PuTTY](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html) or [MobaXterm](https://mobaxterm.mobatek.net/).
 
 For Mac user, you can use [iTerm2](https://iterm2.com/) or just use the default terminal.
 
