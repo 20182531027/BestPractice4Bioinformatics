@@ -6,6 +6,8 @@ For windows user, you can use [PuTTY](https://www.chiark.greenend.org.uk/~sgtath
 
 For Mac user, you can use [iTerm2](https://iterm2.com/) or just use the default terminal.
 
+Recommend: use [VSCode](https://code.visualstudio.com/) with [Remote - SSH](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh) extension.
+
 ## Login
 
 ### Login with SSH
@@ -13,6 +15,7 @@ For Mac user, you can use [iTerm2](https://iterm2.com/) or just use the default 
 ```bash
 ssh student@train2025.biochao.cc
 ```
+
 ## Where am I?
 ![alt text](assets/whereami.png)
 
