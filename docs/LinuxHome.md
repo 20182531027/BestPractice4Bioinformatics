@@ -19,6 +19,15 @@ ssh student@train2025.biochao.cc
 ## Where am I?
 ![alt text](assets/whereami.png)
 
+## 搭建一个自己的HOME
+
+```bash
+mkdir biociao
+cd biociao
+export HOME=$PWD
+```
+![Understand Home](assets/understandHome.png)
+
 ## Know the Linux file system
 
 ```bash
@@ -62,13 +71,6 @@ $ tree -L 1 /
 
 普通文件是存储数据或文本的文件，是最常见的文件类型。它们可以包含任何类型的数据，如文本文件、图片、音频文件、视频文件等。
 
-## 'Decorate' your Home 
-
-### Install zsh
-
-```bash
-sudo apt-get install zsh
-```
 #### Directory
 
 目录是一种特殊的文件，用于组织和存储其他文件和目录。目录是文件系统中的树形结构的基础。
@@ -87,6 +89,26 @@ sudo apt-get install zsh
 #### Socket File  
 
 套接字文件用于网络通信或进程间通信。它允许不同进程之间通过网络协议进行通信。
+
+### Path
+
+在 Linux 系统中，路径是用来定位文件和目录的一种方式，它对文件系统的组织和管理起着重要作用。
+
+#### Absolute Path
+
+绝对路径是指从根目录（/）开始的完整路径，它能够唯一地标识系统中的一个文件或目录。无论当前工作目录是什么，绝对路径都能准确地找到目标文件或目录。例如：
+- /home/student/.bashrc 表示从根目录开始，经过 home 目录，再进入 student 用户的家目录，最后到达 .bashrc 文件夹中的 file.txt 文件。 
+- /usr/bin 是一个常见的绝对路径，表示系统中存放可执行文件的目录。
+绝对路径的优点是明确且唯一，不会因当前工作目录的变化而改变。它常用于在脚本中指定文件或目录的精确位置，确保程序能够正确地找到目标资源。
+
+#### Relative Path
+
+相对路径是从当前工作目录开始的路径，它依赖于当前的工作目录。相对路径的起点是当前目录，通过一系列的目录层级来定位目标文件或目录。例如：
+- 如果当前工作目录是 /home/student/biociao，那么 ./miniforge3/LICENSE.txt 就是一个相对路径，它表示从当前目录进入 miniforge3 文件夹，找到 LICENSE.txt 文件。
+- ./Miniforge3-Linux-x86_64.sh 表示当前目录下的 Miniforge3-Linux-x86_64.sh 文件。其中 . 表示当前目录。
+- ../bin 表示当前目录的上一级目录中的 bin 目录。其中 .. 表示上一级目录。  
+
+相对路径的优点是灵活性较高，特别是在处理同一目录下的文件或子目录时，使用相对路径可以避免路径冗长。但它也有局限性，因为它的含义依赖于当前工作目录，如果当前目录发生变化，相对路径可能会失效。
 
 ### File permission
 
@@ -130,11 +152,6 @@ SSH_TTY=/dev/pts/0
 _=/usr/bin/env
 ```
 
-### Install mamba
-
-```bash
-bash ../biociao/Miniforge3-Linux-x86_64.sh
-```
 
 # Homework
 
@@ -162,7 +179,8 @@ Source your bash profile. This will change your HOME directory.
 source .bashrc
 ```
 
-## Install mamba
+
+Install mamba
 
 ```bash
 bash ../biociao/Miniforge3-Linux-x86_64.sh
