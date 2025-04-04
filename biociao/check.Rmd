@@ -10,7 +10,7 @@ knitr::opts_chunk$set(echo = TRUE)
 library(readxl) # install.package("readxl")
 ```
 
-## Load clinical metadata
+## 1. Load clinical metadata
 
 ```{r load}
 m.df <- read_xlsx("./clean.metadata.xlsx","Sheet1")
@@ -146,7 +146,7 @@ table(m.df$EGFR,m.df$Develop)
 ```
 
 
-# 利用统计学再次审视数据清洗
+# 2. 利用统计学再次审视数据清洗
 
 标准正态分布
 ```{r}
@@ -175,7 +175,7 @@ ggplot(m.df,aes(x=Age)) + geom_density(aes(color=Gender))
 ```
 基本统计量
 ```{r}
-library(plyr)
+library(dplyr)
 m.df %>% group_by(Gender) %>%
   dplyr::summarise(
     mean=mean(Age),
@@ -194,8 +194,11 @@ shapiro.test(m.df$Age)
 
 查看箱线图
 ```{r}
-ggplot(m.df,aes(x=Gender,y=Age)) + geom_boxplot(aes(fill=Gender))
+m.df$Age[1] <- 65
+ggplot(m.df,aes(x=Gender,y=Age)) + geom_boxplot(aes(fill=Gender)) +
+  geom_point(aes(y=mean(Age)),shape=3)
 ```
+1.5IQR
 
 查看四分位点：
 ```{r}
@@ -212,5 +215,7 @@ m.df %>% group_by(Gender) %>%
 
 ```{r}
 wilcox.test(Age~Gender,m.df)
+wilcox.test(Develop~Gender,m.df)
+
 ```
 
