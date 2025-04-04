@@ -15,7 +15,9 @@ Learn bioinformatics from 'ZERO' background
 CH.0: [Experience your first git operation!](#guideline)  
 CH.1: [Markdown everything!](./docs/markdown.md)  
 CH.2: [(Very) basic statistics](./docs/basicStatistics.md)  
-CH.3: [Login to a Linux OS](./docs/LinuxHome.md)
+CH.3: [Login to a Linux OS](./docs/LinuxHome.md)  
+CH.4: [Data version control](./docs/dvc.md)
+
 
 # 准备工作（即作业Ex.0）
 使用 `github.com`平台，参与`BestPractice4Bioinformatics`培训项目并完成首次提交。
