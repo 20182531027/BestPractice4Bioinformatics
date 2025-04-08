@@ -157,7 +157,7 @@ _=/usr/bin/env
 
 Login to the server:
 ```bash
-ssh student@train2025.biociao.cc
+ssh student@train2025.biochao.cc
 ```
 
 After login, create your own HOME directory.
