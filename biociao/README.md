@@ -10,3 +10,5 @@ This is my practice notes to learn bioinformatics
 - origin.metadata.xlsx      - 原始临床表型表（非真实练习数据，请复制到自己目录下）
 - clean.metadata.xlsx       - 清洗后的表型表（参考用）
 - check.Rmd                 - 深度清洗过程（参考用）
+
+## 准备工作环境

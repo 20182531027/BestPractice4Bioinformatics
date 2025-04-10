@@ -1,0 +1,5 @@
+outs:
+- md5: d72bb9fd44536c6932c8a9e3bac526db
+  size: 1006765
+  hash: md5
+  path: SRR17173180_1.fastq.gz

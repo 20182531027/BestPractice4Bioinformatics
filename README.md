@@ -16,7 +16,8 @@ CH.0: [Experience your first git operation!](#guideline)
 CH.1: [Markdown everything!](./docs/markdown.md)  
 CH.2: [(Very) basic statistics](./docs/basicStatistics.md)  
 CH.3: [Login to a Linux OS](./docs/LinuxHome.md)  
-CH.4: [Data version control](./docs/dvc.md)
+CH.4: [Data version control](./docs/dvc.md)  
+CH.5: [Quality control for sequence data](./biociao/checkSeqData.md)
 
 
 # 准备工作（即作业Ex.0）
