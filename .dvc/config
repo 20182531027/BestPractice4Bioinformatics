@@ -1,0 +1,6 @@
+[core]
+    remote = train2025
+    autostage = true
+['remote "train2025"']
+    url = ssh://student@train2025.biochao.cc/home/student/DATA/bestPractice_dvc_cache
+    user = student
