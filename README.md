@@ -137,7 +137,7 @@ git push origin YourName
 
 ### Q: Occasionally unable to access github.com  
 
-The cause is complex and involves a mix of various factors. To avoid this issue, I provided multiple distributed repository access points. When encountering difficulties in accessing github.com smoothly, you may consider using the following gitee.com mirror repository (no login is required if you only need to pull the latest code).  
+The cause is complex and involves a mix of various factors. To avoid this issue, I provided multiple distributed repository access points. When encountering difficulties in accessing github.com smoothly, you may consider using the following [gitee.com](https://gitee.com/bgigpd/BestPractice4Bioinformatics) mirror repository (no login is required if you only need to pull the latest code).  
 
 ```bash
 git remote add gitee https://gitee.com/bgigpd/BestPractice4Bioinformatics.git
