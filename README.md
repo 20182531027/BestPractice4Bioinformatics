@@ -10,16 +10,21 @@ Learn bioinformatics from 'ZERO' background
 4. 如何使用工具
 5. 设计实验方案与分析流程
 
-# 作业
+# 课程文档与作业
 
-Ex.0: Experience your first git operation! (见下文）  
-Ex.1: [Markdown everything!](./docs/markdown.md)
+CH.0: [Experience your first git operation!](#guideline)  
+CH.1: [Markdown everything!](./docs/markdown.md)  
+CH.2: [(Very) basic statistics](./docs/basicStatistics.md)  
+CH.3: [Login to a Linux OS](./docs/LinuxHome.md)  
+CH.4: [Data version control](./docs/dvc.md)  
+CH.5: [Quality control for sequence data](./biociao/checkSeqData.md)  
+CH.6: [Squence Alignment/Mapping and data manipulation](./docs/mapping.md)  
 
 # 准备工作（即作业Ex.0）
 使用 `github.com`平台，参与`BestPractice4Bioinformatics`培训项目并完成首次提交。
 
-# Guideline
 
+## Guideline
 
 ### STEP 1. Fork the [`BGIGPD/BestPractice4Bioinformatics`](https://github.com/BGIGPD/BestPractice4Bioinformatics) project
 
@@ -128,4 +133,30 @@ git remote show origin
 5 推送代码
 ```bash
 git push origin YourName
+```
+
+### Q: Occasionally unable to access github.com  
+
+The cause is complex and involves a mix of various factors. To avoid this issue, I provided multiple distributed repository access points. When encountering difficulties in accessing github.com smoothly, you may consider using the following [gitee.com](https://gitee.com/bgigpd/BestPractice4Bioinformatics) mirror repository (no login is required if you only need to pull the latest code).  
+
+```bash
+git remote add gitee https://gitee.com/bgigpd/BestPractice4Bioinformatics.git
+git pull gitee train2025
+```
+
+### Q: conda/mamba install failed
+
+The reasons are mainly due to OOM(out-of-memory) or network unaccessiable.  
+
+#### Solution 1  
+Try use anaconda mirror like [tuna](https://mirrors.tuna.tsinghua.edu.cn) or [NJU](https://mirror.nju.edu.cn).
+
+#### Solution 2  
+Tyr not use vscode and `mamba install` in the same time, as vscode requires a lot of memory.
+
+#### Solution 3  
+Skip this step and directly use my profile. By `source` following configuration you will be using my installed mamba and obtained the tools we need during this course.
+
+```bash
+source /home/student/biociao/init_mamba.rc
 ```
