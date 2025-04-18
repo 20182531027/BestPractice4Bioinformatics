@@ -134,3 +134,29 @@ git remote show origin
 ```bash
 git push origin YourName
 ```
+
+### Q: Occasionally unable to access github.com  
+
+The cause is complex and involves a mix of various factors. To avoid this issue, I provided multiple distributed repository access points. When encountering difficulties in accessing github.com smoothly, you may consider using the following gitee.com mirror repository (no login is required if you only need to pull the latest code).  
+
+```bash
+git remote add gitee https://gitee.com/bgigpd/BestPractice4Bioinformatics.git
+git pull gitee train2025
+```
+
+### Q: conda/mamba install failed
+
+The reasons are mainly due to OOM(out-of-memory) or network unaccessiable.  
+
+#### Solution 1  
+Try use anaconda mirror like [tuna](https://mirrors.tuna.tsinghua.edu.cn) or [NJU](https://mirror.nju.edu.cn).
+
+#### Solution 2  
+Tyr not use vscode and `mamba install` in the same time, as vscode requires a lot of memory.
+
+#### Solution 3  
+Skip this step and directly use my profile. By `source` following configuration you will be using my installed mamba and obtained the tools we need during this course.
+
+```bash
+source /home/student/biociao/init_mamba.rc
+```
