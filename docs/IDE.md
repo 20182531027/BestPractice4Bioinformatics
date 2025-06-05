@@ -44,7 +44,7 @@ odb12v1_level2species.tab
 
 ```
 
-下载`odb12v1_OGs.tab.gz`
+下载`odb12v1_gene_xrefs.tab.gz`
 
 ```
 $ wget https://data.orthodb.org/current/download/odb12v1_OGs.tab.gz
@@ -85,6 +85,25 @@ MPTTPTTLAQRPALNLLLALAMLVAGPVAAWAQVQQPAPALSTPAPATPAPATPAPATTTPSAPATAAPVPAAPAPSTPA
 
 
 #### 尝试1: 借助大模型提问
+
+prompt：
+```
+我有一个文件具有如下格式：
+"""
+gzip -dc odb12v1_gene_xrefs.tab.gz|head
+100_0:000000	GO:0016020	GOterm
+100_0:000000	GO:0005886	GOterm
+100_0:000000	GO:0000166	GOterm
+100_0:000000	GO:0016887	GOterm
+100_0:000000	GO:0005524	GOterm
+100_0:000000	IPR017871	InterPro
+100_0:000000	IPR003439	InterPro
+100_0:000000	IPR003593	InterPro
+100_0:000000	IPR027417	InterPro
+100_0:000000	WP_131833652.1	NCBIproteinAcc
+"""
+如何按照第二列的名称进行重新排序？并按照该顺序，将第一列id对应的序列从odb12v1_aa_fasta.gz中找出并分别保存至对应的字文件中，比如`GO:0005524` 保存至`GO_0005524.fa`.
+```
 
 Review kimi : https://www.kimi.com/share/d104iof60ra02d3rauog
 
