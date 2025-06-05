@@ -194,3 +194,12 @@ $ gzip -dc odb12v1_OGs_sorted.tab.gz | gzip > odb12v1_OGs_sorted.tab_fix.gz
 # 作业
 
 从自己的实际项目中找到代码开发需求，实践上述工具和技巧。
+
+
+# FAQ  
+
+## Q：如何选择debug环境（kernel or interpreter）？  
+1. 打开 VSCode。  
+2. 按下Ctrl+Shift+P（Windows）或Command+Shift+P（Mac）打开命令面板。  
+3. 在命令面板中输入并选择 “Python: Select Interpreter”（Python：选择解释器）命令。  
+4. 在弹出的列表中，找到并选择你想要使用的 Conda 环境对应的 Python 解释器。Conda 环境的解释器通常会显示为 “conda” 后跟环境名称的形式，例如 “conda:/path/to/conda/envs/your_env_name/bin/python”（Linux 和 Mac）或 “conda:/path/to/conda/envs/your_env_name/python.exe”（Windows）。
