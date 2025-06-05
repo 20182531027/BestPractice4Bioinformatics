@@ -44,11 +44,11 @@ odb12v1_level2species.tab
 
 ```
 
-下载`odb12v1_gene_xrefs.tab.gz`
+下载`odb12v1_OGs.tab.gz`
 
 ```
 $ wget https://data.orthodb.org/current/download/odb12v1_OGs.tab.gz
-$ gzip -dc odb12v1_gene_xrefs.tab.gz|head
+$ gzip -dc odb12v1_OGs.tab.gz|head
 100_0:000000	GO:0016020	GOterm
 100_0:000000	GO:0005886	GOterm
 100_0:000000	GO:0000166	GOterm
