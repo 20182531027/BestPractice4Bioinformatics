@@ -21,6 +21,7 @@ CH.5: [Quality control for sequence data](./biociao/checkSeqData.md)
 CH.6: [Squence Alignment/Mapping and data manipulation](./docs/mapping.md)  
 
 BOX.01: [AI powered IDE](./docs/IDE.md)
+BOX.02: [Knowledge Management](./docs/Knowledge_Management.md)
 
 # 准备工作（即作业Ex.0）
 使用 `github.com`平台，参与`BestPractice4Bioinformatics`培训项目并完成首次提交。
