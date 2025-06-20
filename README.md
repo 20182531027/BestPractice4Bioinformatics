@@ -20,7 +20,7 @@ CH.4: [Data version control](./docs/dvc.md)
 CH.5: [Quality control for sequence data](./biociao/checkSeqData.md)  
 CH.6: [Squence Alignment/Mapping and data manipulation](./docs/mapping.md)  
 
-BOX.01: [AI powered IDE](./docs/IDE.md)
+BOX.01: [AI powered IDE](./docs/IDE.md)  
 BOX.02: [Knowledge Management](./docs/Knowledge_Management.md)
 
 # 准备工作（即作业Ex.0）
