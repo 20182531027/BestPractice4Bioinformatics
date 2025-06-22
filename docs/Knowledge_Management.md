@@ -35,6 +35,7 @@ RSS 是 Really Simple Syndication 的缩写，即简易信息聚合，是一种�
 * 社交网络、论坛等
 
 * 其他网络途径
+  * 补充一个国内文献互助的平台 [科研通](https://www.ablesci.com)
 
 ### 网络资料
 
