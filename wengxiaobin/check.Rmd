@@ -95,6 +95,8 @@ test_data <- filtered_data %>%
   select(mdata_clean.EGFR, mdata_clean.Dev_factor)
 fisher_result <- fisher.test(table(test_data))
 print(fisher_result)
+ttest_result<-t.test(table(test_data))
+print(ttest_result)
 ```
 
 
