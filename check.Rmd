@@ -1,0 +1,101 @@
+---
+title: "wxb"
+author: "wengxiaobin"
+date: "2025-07-24"
+output: html_notebook
+---
+加载包
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(ggplot2)
+library(readxl)
+library(dplyr)
+library(tidyr)
+```
+
+##加载数据及处理
+我们发现疾病中只有一例鳞癌，此外全为腺癌，所以我将鳞癌直接摘除数据之外
+```{r}
+mdata <- read_xlsx("./clean.metadata.xlsx","Sheet1")
+summary(mdata)
+table(mdata$Disease)
+mdata_clean <- mdata%>%
+  filter(Disease!="鳞癌")
+table(mdata_clean$Disease)
+
+```
+##观察EGFR突变类型及病情发展情况
+```{r}
+table(mdata_clean$EGFR)
+mdata_clean$EGFR[which(mdata_clean$EGFR=="19del")] <- "19Del"
+mdata_clean$Dev_factor <- as.factor(mdata_clean$Develop)
+levels(mdata_clean$Dev_factor) <- c("未恶化","恶化")
+table(mdata_clean$Dev_factor)
+mutation_data<-data.frame(num=seq(from=1,to=65,by=1),mdata_clean$EGFR,mdata_clean$Dev_factor)
+show(mutation_data)
+```
+##创建统计图
+```{r}
+result_table<-mutation_data%>%
+  group_by(mdata_clean.EGFR,mdata_clean.Dev_factor)%>%
+  summarise(count=n(),.groups="drop")%>%
+  pivot_wider(names_from=mdata_clean.Dev_factor,values_from=count,values_fill=0)
+print(result_table)
+plot_data <- result_table %>%
+  pivot_longer(
+    cols = c("未恶化", "恶化"),
+    names_to = "Dev_status",
+    values_to = "count"
+  )
+```
+##绘图
+```{r}
+ggplot(plot_data, aes(x = mdata_clean.EGFR, y = count, fill = Dev_status)) +
+  geom_bar(stat = "identity", position = position_dodge()) +
+  geom_text(aes(label = count), 
+            position = position_dodge(width = 0.9),
+            vjust = -0.5, size = 2) +
+  labs(title = "EGFR突变类型与疾病发展关系",
+       x = "EGFR突变类型",
+       y = "患者数量",
+       fill = "疾病状态") +
+  scale_fill_manual(values = c("未恶化" = "green", "恶化" = "red"))
+```
+
+```{r}
+# 首先筛选出19Del和L858R的数据
+filtered_data <- mutation_data %>%
+  filter(mdata_clean.EGFR %in% c("19Del", "L858R"))
+
+# 计算比例（按突变类型分组）
+plot_data <- filtered_data %>%
+  group_by(mdata_clean.EGFR) %>%
+  count(mdata_clean.Dev_factor) %>%
+  mutate(prop = n / sum(n)) %>%
+  ungroup()
+
+# 绘制比例堆叠图（仅显示19Del和L858R）
+ggplot(plot_data, aes(x = mdata_clean.EGFR, y = prop, fill = mdata_clean.Dev_factor)) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = scales::percent(prop, accuracy = 1)), 
+            position = position_stack(vjust = 0.5),
+            color = "white", size = 4) +
+  labs(title = "19Del与L858R突变类型的恶化比例",
+       x = "突变类型",
+       y = "比例",
+       fill = "疾病状态") +
+  scale_fill_manual(values = c("未恶化" = "green", "恶化" = "red")) +
+  scale_y_continuous(labels = scales::percent) +
+  theme_minimal() +
+  theme(legend.position = "top")
+```
+##显著性检验
+```{r}
+test_data <- filtered_data %>%
+  select(mdata_clean.EGFR, mdata_clean.Dev_factor)
+fisher_result <- fisher.test(table(test_data))
+print(fisher_result)
+```
+
+
+
